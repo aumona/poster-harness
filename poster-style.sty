@@ -1,0 +1,87 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{poster-style}[2026/11/07 Simple research poster]
+\RequirePackage[paperwidth=48in,paperheight=36in,margin=0pt]{geometry}
+\RequirePackage{tikz,graphicx,lmodern,amsmath,amssymb}
+\usetikzlibrary{arrows.meta}
+\RequirePackage[hidelinks]{hyperref}
+\renewcommand{\familydefault}{\sfdefault}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\definecolor{PosterPurple}{HTML}{662E7D}
+\definecolor{PosterGreen}{HTML}{B9DBC1}
+\definecolor{PosterInk}{HTML}{222B33}
+% Font sizes in points. Left and right panes share the Side* settings.
+% SDM26 base sizes; center body matches the side heading/body ratio.
+% Line spacing follows each font size.
+\newcommand{\SideTitleFontSize}{48.72}
+\newcommand{\SideHeadingFontSize}{51.04}
+\newcommand{\SideBodyFontSize}{41.76}
+\newcommand{\CenterTitleFontSize}{208.1333}
+\newcommand{\CenterHeadingFontSize}{69.3333}
+\newcommand{\CenterBodyFontSize}{\CenterHeadingFontSize*(\SideBodyFontSize/\SideHeadingFontSize)}
+\newcommand{\PosterSizeFont}[2]{%
+  \pgfmathsetmacro{\PosterComputedSize}{#1}%
+  \pgfmathsetmacro{\PosterComputedLeading}{(#1)*(#2)}%
+  \fontsize{\PosterComputedSize}{\PosterComputedLeading}\selectfont}
+% Default pane context is side; each minipage selects its own fonts locally.
+\newcommand{\PosterBodyFont}{\PosterSizeFont{\SideBodyFontSize}{51.04/41.76}}
+\newcommand{\PosterHeadingFont}{\PosterSizeFont{\SideHeadingFontSize}{60.32/51.04}}
+\newcommand{\PosterPaperTitleFont}{\PosterSizeFont{\SideTitleFontSize}{56.84/48.72}}
+\newcommand{\PosterAuthorFont}{\PosterSizeFont{\SideBodyFontSize*32.48/41.76}{42.92/32.48}}
+\newcommand{\PosterTakeawayFont}{\PosterSizeFont{\CenterTitleFontSize}{218.6667/208.1333}}
+\newcommand{\PosterSubtitleFont}{\PosterSizeFont{\CenterTitleFontSize*(96/208.1333)}{109.3333/96}}
+\newcommand{\PosterCenterHeadingFont}{\PosterSizeFont{\CenterHeadingFontSize}{82.6667/69.3333}}
+\newcommand{\PosterCenterBodyFont}{\PosterSizeFont{\CenterBodyFontSize}{51.04/41.76}}
+\newcommand{\PosterCenterSmallFont}{\PosterSizeFont{\CenterBodyFontSize*32.48/41.76}{42.92/32.48}}
+\newcommand{\PosterSideFonts}{\PosterBodyFont}
+\newcommand{\PosterCenterFonts}{\let\PosterBodyFont\PosterCenterBodyFont\let\PosterHeadingFont\PosterCenterHeadingFont\let\PosterAuthorFont\PosterCenterSmallFont\PosterBodyFont}
+\newcommand{\PosterCenterSection}[2]{\par\vspace{0.32in}{\color{PosterPurple}\PosterCenterHeadingFont\bfseries #1\par}\vspace{0.17in}#2\par}
+\newcommand{\PosterSection}[2]{\par\vspace{0.32in}{\color{PosterPurple}\PosterHeadingFont\bfseries #1\par}\vspace{0.17in}#2\par}
+\newcommand{\PosterBullets}[1]{\begin{list}{\textbullet}{\setlength{\leftmargin}{0.30in}\setlength{\itemsep}{0.14in}\setlength{\topsep}{0pt}}#1\end{list}}
+% Always preserve image aspect ratio. The third argument caps image height.
+\newcommand{\PosterFigure}[3]{\par\begin{center}\includegraphics[width=\linewidth,height=#3,keepaspectratio]{#1}\par\vspace{0.12in}{\PosterBodyFont #2\par}\end{center}}
+\newcommand{\FigurePlaceholder}[2]{\par\begingroup\setlength{\fboxsep}{0.20in}\fcolorbox{PosterPurple}{white}{\parbox[c][#1][c]{\dimexpr\linewidth-0.40in-2\fboxrule\relax}{\centering\color{PosterPurple}\PosterBodyFont #2}}\par\endgroup}
+\newcommand{\PosterReferences}[1]{{\PosterAuthorFont #1\par}}
+\newcommand{\PosterQRSize}{5.8in}
+\newcommand{\PosterLogoHeight}{1.2in}
+\newcommand{\PosterQR}[3]{\begin{minipage}[t]{\linewidth}\centering\includegraphics[width=\PosterQRSize,height=\PosterQRSize,keepaspectratio]{#1}\par\vspace{0.10in}{\PosterCenterHeadingFont\textbf{#2}\par}{\PosterAuthorFont\url{#3}\par}\end{minipage}}
+% SDM26 footer positions use its 36 x 27 design grid, mapped to 48 x 36 inches.
+% Coordinates scale by 4/3; fonts and asset dimensions below are print sizes.
+\newcommand{\PosterFooterLayout}{%
+\begin{scope}[x=1.3333333333in,y=1.3333333333in]
+\node[anchor=north,inner sep=0] (paperQR) at (12,6.75)
+ {\includegraphics[width=\PosterQRSize,height=\PosterQRSize,keepaspectratio]{\PaperQRFile}};
+\node[anchor=north,inner sep=0] (codeQR) at (24,6.75)
+ {\includegraphics[width=\PosterQRSize,height=\PosterQRSize,keepaspectratio]{\CodeQRFile}};
+\node[anchor=west,inner sep=0,text=PosterPurple,font=\PosterCenterHeadingFont\bfseries] (paperLabel)
+ at ([xshift=4.733333in]paperQR.center) {\vphantom{PaperCode}Paper};
+\node[anchor=east,inner sep=0,text=PosterPurple,font=\PosterCenterHeadingFont\bfseries] (codeLabel)
+ at ([xshift=-4.733333in]codeQR.center) {\vphantom{PaperCode}Code};
+\draw[-{Stealth[length=48pt,width=40pt]},PosterPurple,line width=12pt]
+ ([xshift=-0.24in]paperLabel.west)--([xshift=0.20in]paperQR.east);
+\draw[-{Stealth[length=48pt,width=40pt]},PosterPurple,line width=12pt]
+ ([xshift=0.24in]codeLabel.east)--([xshift=-0.20in]codeQR.west);
+\node[inner sep=0] at (10.7,0.95)
+ {\includegraphics[width=3.2in,height=\PosterLogoHeight,keepaspectratio]{\MilaLogoFile}};
+\node[inner sep=0] at (13.9,0.95)
+ {\includegraphics[width=4.0in,height=\PosterLogoHeight,keepaspectratio]{\UdemLogoFile}};
+\node[inner sep=0] at (17.5,0.95)
+ {\includegraphics[width=4.0in,height=\PosterLogoHeight,keepaspectratio]{\McgillLogoFile}};
+\node[inner sep=0] at (21.3,0.95)
+ {\includegraphics[width=4.8in,height=\PosterLogoHeight,keepaspectratio]{\ConcordiaLogoFile}};
+\node[inner sep=0] at (25.5,0.95)
+ {\includegraphics[width=4.0in,height=\PosterLogoHeight,keepaspectratio]{\IclrLogoFile}};
+\end{scope}}
+\newsavebox{\PosterPanelBox}
+% Fail the build if a panel exceeds its reserved height.
+\newcommand{\PosterPanel}[5]{\begin{pgfinterruptpicture}\global\setbox\PosterPanelBox=\hbox{\begin{minipage}[t]{#3}\normalfont\raggedright\color{PosterInk}\PosterBodyFont #5\end{minipage}}\ifdim\dimexpr\ht\PosterPanelBox+\dp\PosterPanelBox\relax>#4\PackageError{poster-style}{Panel at (#1,#2) exceeds #4}{Shorten content or reduce figure height; do not shrink body text.}\fi\end{pgfinterruptpicture}\node[anchor=north west,inner sep=0] at (#1,#2){\usebox{\PosterPanelBox}};}
+\newcommand{\RenderPoster}{\null\begin{tikzpicture}[remember picture,overlay,x=1in,y=1in]\begin{scope}[shift={(current page.south west)}]
+% SDM26 proportions: 20% / 60% / 20% = 9.6 / 28.8 / 9.6 inches.
+\fill[PosterGreen] (0,0) rectangle (9.6,36);
+\fill[white] (9.6,0) rectangle (48,36);
+\draw[PosterPurple!20,line width=2pt] (38.4,0.8)--(38.4,35.2);
+\PosterPanel{0.65}{35.2}{8.3in}{34.4in}{\PosterSideFonts\LeftContent}
+\PosterPanel{10.4}{35.2}{27.2in}{24.4in}{\PosterCenterFonts\CenterContent}
+\PosterPanel{39.05}{35.2}{8.3in}{34.4in}{\PosterSideFonts\RightContent}
+\FooterContent
+\end{scope}\end{tikzpicture}}

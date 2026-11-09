@@ -1,0 +1,59 @@
+% Edit this file for each poster. All text below is illustrative, not research evidence.
+\newcommand{\LeftContent}{
+{\PosterPaperTitleFont\bfseries Your paper title goes here\par}
+\vspace{0.30in}
+{\PosterAuthorFont Author One, Author Two\par}
+{\PosterAuthorFont Mila / Universit\'e de Montr\'eal\par}
+\PosterSection{Summary}{\PosterBullets{
+\item Help a reader understand the work without talking to you.
+\item Summarize the question, contribution, and main finding.
+\item Give a \textbf{quick overview} worth saving in a photo.
+}}
+\PosterSection{Method}{\PosterBullets{
+\item Explain the essential idea in a few short bullets.
+\item Use a small diagram when it makes the method clearer.
+\item Keep this pane readable in about one minute.
+}}
+\vspace{0.35in}
+\FigurePlaceholder{5in}{Method diagram\\[0.15in]Input $\rightarrow$ Model $\rightarrow$ Output}
+\PosterSection{Contact}{\href{mailto:you@example.org}{you@example.org}\\Conference name / Year}
+}
+\newcommand{\CenterContent}{
+{\color{PosterPurple}\PosterTakeawayFont\bfseries Your main\\takeaway.\par}
+\vspace{0.45in}
+{\PosterSubtitleFont One or two sentences for people walking past.\par}
+\vspace{0.65in}
+\FigurePlaceholder{10in}{Optional main-result figure\\[0.25in]Use only if it makes the takeaway clear at a glance.}
+\vspace{0.20in}
+{\PosterBodyFont\textbf{Figure 1.} Give just enough context to understand the result at a glance.\par}
+\PosterCenterSection{Why it matters}{State the significance in plain language. Keep the takeaway dominant.}
+}
+\newcommand{\RightContent}{
+\PosterSection{Experiments and details}{\PosterBullets{
+\item Choose figures and tables to support a conversation.
+\item Use short captions; explain the details in person.
+\item Keep labels, units, and evaluation conditions clear.
+}}
+\vspace{0.25in}
+\FigurePlaceholder{5in}{Discussion figure or table}
+\PosterSection{Limitations}{Note the assumption or limitation needed to interpret the results.}
+\PosterSection{Next steps}{Add only details that help explain your main points.}
+\PosterSection{References}{\PosterReferences{
+[1] A. Author et al. Paper title. Venue, year.\\[0.15in]
+[2] B. Author et al. Related work. Venue, year.
+}}
+\PosterSection{Acknowledgments}{\PosterReferences{Brief funding and collaborator credits. Use the logos of your actual affiliations.}}
+}
+% Generate locally: python3 scripts/make-qr.py URL my-qr.png --mode light
+% Light: foreground #662E7D, background #FFFFFF.
+% Dark: foreground #FFFFFF, background #662E7D. Scan-test both codes.
+% Replace both QR images with codes for your actual paper/code URLs.
+% Example destinations: https://example.org and https://example.org/code .
+\newcommand{\PaperQRFile}{assets/qrcodes/example-qr.png}
+\newcommand{\CodeQRFile}{assets/qrcodes/example-code-qr.png}
+\newcommand{\MilaLogoFile}{assets/logos/mila-color.pdf}
+\newcommand{\UdemLogoFile}{assets/logos/udem-color.pdf}
+\newcommand{\McgillLogoFile}{assets/logos/mcgill-color.pdf}
+\newcommand{\ConcordiaLogoFile}{assets/logos/concordia-color.pdf}
+\newcommand{\IclrLogoFile}{assets/logos/iclr-color.png}
+\newcommand{\FooterContent}{\PosterFooterLayout}

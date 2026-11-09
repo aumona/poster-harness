@@ -1,0 +1,2 @@
+# Only needed for generating QR images; build/check/clean use the standard library.
+qrcode[pil]>=8.2,<9
