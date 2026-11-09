@@ -1,11 +1,11 @@
 ---
 name: new-poster
-description: "Start a research poster with the RAFALES LaTeX template: gather the brief and sources, show a three-pane outline, then build and inspect. Use for a new poster or /new-poster; existing poster edits follow that project's AGENTS.md."
+description: "Start a research poster with the Poster Harness LaTeX template: gather the brief and sources, show a three-pane outline, then build and inspect. Use for a new poster or /new-poster; existing poster edits follow that project's AGENTS.md."
 ---
 
 # New poster
 
-Every new poster starts from `~/Projects/rafales-poster-template`.
+Every new poster starts from `~/Projects/poster-harness`.
 Default poster collection: `~/Projects/presentations`. The template and each poster
 are separate folders; the current working directory is not the destination.
 This skill gets the project started with a brief, sources, and an outline.
@@ -13,13 +13,13 @@ The poster folder's own `AGENTS.md` drives content, layout, and verification.
 
 ## Steps
 
-1. **Find the template.** Use `~/Projects/rafales-poster-template`, unless
+1. **Find the template.** Use `~/Projects/poster-harness`, unless
    the user supplies another location. Require `scripts/new-poster.py`.
    If the checkout is absent, clone it there:
 
    ```sh
    mkdir -p ~/Projects
-   git clone https://github.com/aumona/rafales-poster-template.git ~/Projects/rafales-poster-template
+   git clone https://github.com/aumona/poster-harness.git ~/Projects/poster-harness
    ```
 
    If the directory exists without the creation script, report the incomplete
@@ -33,7 +33,7 @@ The poster folder's own `AGENTS.md` drives content, layout, and verification.
    substitute today's date for an unknown presentation date.
 
    ```sh
-   python3 ~/Projects/rafales-poster-template/scripts/new-poster.py ~/Projects/presentations/YYYY-MM-DD-venue-slug
+   python3 ~/Projects/poster-harness/scripts/new-poster.py ~/Projects/presentations/YYYY-MM-DD-venue-slug
    ```
 
    Substitute the resolved template and destination paths. Never create inside
@@ -143,6 +143,6 @@ symlink its assets into the new project.
 ## Improving the template
 
 Research-specific text and figures belong in the poster folder. When asked to
-improve the reusable workflow, change `~/Projects/rafales-poster-template`;
+improve the reusable workflow, change `~/Projects/poster-harness`;
 a fix made only in one poster will not reach the next. Do not commit or push
 those changes unless requested.

@@ -1,10 +1,8 @@
-# 🛩️ RAFALES Poster Template
+# Poster Harness
 
 A standalone, editable BetterPoster-inspired LaTeX template. Default print size: **48 x 36 inches, landscape**. Default pane widths: **20% left / 60% center / 20% right**, or 9.6 / 28.8 / 9.6 inches. The selected purple (`#662E7D`) is Mila's official logo purple, taken from the [official Mila SVG](https://mila.quebec/sites/default/themes/mila_v1/logo.svg) used by `assets/logos/mila-color.pdf`. Pale green (`#B9DBC1`) is taken from Mila's [official website stylesheet](https://mila.quebec/sites/default/files/css/css_J4CCfVN5SWjedZp9IH4f0a8J8wc57536YUd18MesaZQ.css), where it is used for `theme-green` backgrounds and `ckeditor-style-theme-green` bullets. This is a verified website color, rather than a claim about a published brand manual. Latin Modern Sans completes the template design. Default print typography: side body text 41.76 pt, center body text approximately 56.73 pt, side headings 51.04 pt, paper title 48.72 pt, main takeaway 208.13 pt, and subtitle 96 pt. Font commands are centralized in `poster-style.sty`. The example is deliberately generic and contains no research results.
 
 This is a reusable default for conference posters. Keep the format consistent across projects, adapting dimensions or required elements when a conference specifies them.
-
-RAFALES takes its name from Prof. Guy Wolf’s lab, where I first designed this template to help my teammates.
 
 [View the poster template PDF](output/pdf/main.pdf)
 
@@ -45,10 +43,10 @@ as the content changes. Build in the new folder; its output is
 The repository includes `skills/new-poster/SKILL.md`. It locates the reusable
 template, creates a separate project, gathers missing brief information, and
 hands over to that project's `AGENTS.md`. Its default template location is
-`~/Projects/rafales-poster-template`; edit that reference if you store it elsewhere.
+`~/Projects/poster-harness`; edit that reference if you store it elsewhere.
 The skill checks for `scripts/new-poster.py` to identify a usable template.
 If that file and the template folder are missing, the skill clones
-`https://github.com/aumona/rafales-poster-template.git` there (or into your
+`https://github.com/aumona/poster-harness.git` there (or into your
 specified template location), then checks for the script again. If the folder
 exists but the script is missing, it asks how to proceed rather than overwriting it.
 Unless you specify a destination, new posters go in `~/Projects/presentations`,
@@ -61,7 +59,7 @@ already exist):
 
 ```sh
 mkdir -p ~/.agents/skills
-ln -s ~/Projects/rafales-poster-template/skills/new-poster ~/.agents/skills/new-poster
+ln -s ~/Projects/poster-harness/skills/new-poster ~/.agents/skills/new-poster
 ```
 
 Start a fresh Codex session if needed to discover it, then ask:
