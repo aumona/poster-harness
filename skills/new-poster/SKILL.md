@@ -51,10 +51,16 @@ The poster folder's own `AGENTS.md` drives content, layout, and verification.
    defaults without asking again. Read the paper and propose the takeaway if
    the user has not chosen one. Optional preferences may remain blank.
 
-4. **Gather sources.** Use material listed in the brief or found through
-   those sources. Do not treat neighboring projects as inputs. Copy relevant
+4. **Gather sources.** Use paths and URLs in the brief's “What exists, and
+   where” and “Material to reuse” sections, or material discoverable from
+   those locations. There is no fixed list of content folders to scan
+   automatically. Do not treat neighboring projects as inputs. Copy relevant
    papers, TeX sections, data, and supporting documents into `sources/`;
-   selected display figures belong in `assets/`. Keep the project standalone,
+   keep reused or new figure scripts in `figures/`, and display images and
+   generated figures in `assets/`. Create source/script folders as needed.
+   The template's `content.tex`, `main.tex`, `poster-style.sty`, and example
+   assets supply layout/design references, not research content or results.
+   Keep the project standalone,
    with no symlinks or references to files outside it. Do not copy an entire
    research checkout when a few files suffice.
 
@@ -62,7 +68,9 @@ The poster folder's own `AGENTS.md` drives content, layout, and verification.
    source, record its title, authors when available, original path or URL,
    and local file when available. Give claims and figures precise locators:
    page, section, figure/table number, or data file and analysis. Preserve
-   provenance for copied assets. Sources fetched from supplied URLs belong
+   provenance for copied assets. Original paths/URLs record provenance;
+   copy figure-script dependencies locally so they can be reproduced without
+   external project files. Sources fetched from supplied URLs belong
    in the register too. Do not invent results, citations, or links; record
    missing evidence as `TODO[value]` in the outline until resolved.
 
@@ -129,7 +137,8 @@ Reuse only material identified by the user or traced from the brief's sources.
 Copy source files into `sources/`, selected figures into `assets/`, and any
 needed figure-generation scripts into `figures/`. Name them in the outline's
 `Source` and `Visual` fields and retain attribution. Never copy an older
-poster's layout files or symlink its assets into the new project.
+poster's layout files, reuse an older poster's or talk's `_src/` files, or
+symlink its assets into the new project.
 
 ## Improving the template
 

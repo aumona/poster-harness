@@ -3,9 +3,21 @@
 Answer here or in chat. The agent fills in what you already supplied and asks
 only for missing information needed to create the poster.
 
-## Paper and supporting material
+## What exists, and where
 
-Paths or URLs for the paper, TeX sources, figures, and any previous material:
+Paths or URLs for every paper, TeX source, result, figure, table, dataset, or
+supporting document the poster may draw on. Use only material listed here or
+discoverable from these locations; no fixed content folders are automatically
+scanned. Record missing evidence as `TODO[value]` in the outline.
+
+## Material to reuse
+
+Paths or URLs for previous posters, talks, notes, blog posts, or paper figures
+to reuse. Older projects are considered only when referenced in this brief
+or discovered through its listed sources. Copy relevant source material and
+data into `sources/`, figure scripts into `figures/`, and display images into
+`assets/` in the new poster folder. Do not reuse older projects' `_src/` files
+or poster layout files.
 
 ## Conference and deadline
 

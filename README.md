@@ -73,6 +73,35 @@ The skill is optional; the creation command and project instructions also work
 on their own. The template folder supplies reusable files, while the new poster
 folder and the source material you identify supply the context for the work.
 
+### Where poster content comes from
+
+There is no fixed list of content folders automatically scanned. New posters
+draw from paths and URLs recorded in `brief.md`, especially:
+
+- **What exists, and where:** papers, TeX sources, results, figures, tables,
+  datasets, and material discoverable from those locations.
+- **Material to reuse:** previous posters, talks, notes, blog posts, and paper
+  figures.
+
+Within the new poster folder, create these folders as needed:
+
+- `sources/` holds copied source material, data, and `citations.json`, a keyed
+  register of source titles, authors, original paths/URLs, and local files.
+- `figures/` holds reused or new figure scripts and uses local dependencies.
+- `assets/` holds display images and generated figures, alongside QR codes
+  and logos.
+
+Older posters or talks are considered when referenced in the brief or
+discovered through its listed sources. Copy relevant data and sources into
+`sources/`, figure scripts into `figures/`, and selected images into `assets/`,
+preserving provenance. Do not reuse their `_src/` files or poster layout files.
+Keep precise evidence locators in `outline.md` and all build/figure dependencies
+inside the new project; original paths and URLs in the source register record
+provenance.
+
+The template's `content.tex`, `main.tex`, `poster-style.sty`, and example assets
+serve as layout/design references, not sources of research content or results.
+
 ### Build a poster with an agent
 
 Use Codex or another coding agent to help turn a paper into a poster. The included `AGENTS.md` describes the template’s editing and layout conventions. You can also follow these steps manually; see [Edit](#edit).
