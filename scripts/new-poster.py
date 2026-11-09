@@ -7,7 +7,7 @@ import sys
 
 TEMPLATE = Path(__file__).resolve().parent.parent
 FILES = (
-    "AGENTS.md", "README.md", "brief.md", "main.tex", "content.tex",
+    "AGENTS.md", "README.md", "brief.md", "outline.md", "main.tex", "content.tex",
     "poster-style.sty", "Makefile", ".gitignore",
     "assets", "scripts",
 )
@@ -42,7 +42,7 @@ def main():
         print(f"Copy failed; incomplete project at {destination}: {error}", file=sys.stderr)
         return 1
     print(f"Created poster: {destination}")
-    print("Open that folder in Codex and ask it to read AGENTS.md and help fill brief.md.")
+    print("Open that folder in Codex and ask it to read AGENTS.md, fill brief.md, and show outline.md before building.")
     print("Build there with: make check")
     return 0
 

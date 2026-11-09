@@ -20,7 +20,7 @@ python3 scripts/new-poster.py ../my-conference-poster
 
 Relative destinations are resolved from your current working directory. The
 command refuses existing destinations and destinations inside the template.
-It copies the TeX sources, assets, brief, project instructions, and build scripts;
+It copies the TeX sources, assets, brief, outline, project instructions, and build scripts;
 it leaves out Git history, generated PDFs/logs, and the starter skill. No Git
 repository is initialized. Run it from the generic template, rather than a
 previous research poster, so previous content and assets are not carried over.
@@ -29,11 +29,15 @@ Open the new folder in Codex and say:
 
 > Read AGENTS.md and brief.md. Create a poster from the paper at [path]. Ask me
 > for missing information and record my answers in brief.md. Keep the default
-> format, build with make check, and visually inspect the PDF.
+> format. Fill and show outline.md before editing content.tex, then build with
+> make check and visually inspect the PDF.
 
 You can fill in `brief.md` yourself or answer in chat. It records the source
 material, conference requirements, audience, takeaway, author/contact details,
-QR destinations, and restrictions. Build in the new folder; its output is
+QR destinations, and restrictions. The starter `outline.md` plans the center
+takeaway, left overview, right discussion evidence, and footer, with sources
+for each claim and figure. Fill it and show it before building; keep it current
+as the content changes. Build in the new folder; its output is
 `output/pdf/main.pdf`.
 
 ### Optional Codex starter skill
@@ -47,7 +51,10 @@ If that file and the template folder are missing, the skill clones
 `https://github.com/aumona/rafales-poster-template.git` there (or into your
 specified template location), then checks for the script again. If the folder
 exists but the script is missing, it asks how to proceed rather than overwriting it.
-New posters default to a named sibling folder, never inside the template.
+Unless you specify a destination, new posters go next to your other posters,
+named `YYYY-MM-DD-venue-slug` using the poster presentation date. If the parent
+folder, date, or venue/topic is unclear, the skill asks before creating it.
+The template's location does not determine the poster's destination.
 
 To make it available across Codex projects, link it once (the target must not
 already exist):
