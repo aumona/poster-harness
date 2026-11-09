@@ -1,9 +1,34 @@
 """Generate poster QR codes locally.
-Install with: python3 -m pip install -r requirements.txt. Light: purple/white; dark: white/purple.
+No installation needed. Light: purple/white; dark: white/purple.
 """
 import argparse
 from pathlib import Path
-import qrcode
+import struct
+import zlib
+from vendor.qrcodegen import QrCode, DataTooLongError
+
+
+def png_chunk(kind, data):
+    return (struct.pack('>I', len(data)) + kind + data
+            + struct.pack('>I', zlib.crc32(kind + data) & 0xFFFFFFFF))
+
+
+def save_png(qr, output, foreground, background):
+    """Write an RGB PNG with integer scaling and a four-module quiet zone."""
+    scale, border = 12, 4
+    size = (qr.get_size() + border * 2) * scale
+    pixels = bytearray()
+    for y in range(-border, qr.get_size() + border):
+        row = b'\x00' + b''.join(
+            (foreground if qr.get_module(x, y) else background) * scale
+            for x in range(-border, qr.get_size() + border))
+        pixels.extend(row * scale)
+    output.write_bytes(
+        b'\x89PNG\r\n\x1a\n'
+        + png_chunk(b'IHDR', struct.pack('>IIBBBBB', size, size, 8, 2, 0, 0, 0))
+        + png_chunk(b'IDAT', zlib.compress(pixels, 9))
+        + png_chunk(b'IEND', b''))
+
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('url')
 parser.add_argument('output', nargs='?', default='qr.png',
@@ -17,8 +42,9 @@ if Path(args.output).suffix.lower() != '.png':
 output = Path(__file__).resolve().parents[1] / 'assets' / 'qrcodes' / args.output
 output.parent.mkdir(parents=True, exist_ok=True)
 foreground, background = ('#662E7D', '#FFFFFF') if args.mode == 'light' else ('#FFFFFF', '#662E7D')
-qr = qrcode.QRCode(box_size=12, border=4)
-qr.add_data(args.url)
-qr.make(fit=True)
-qr.make_image(fill_color=foreground, back_color=background).save(output)
+try:
+    qr = QrCode.encode_text(args.url, QrCode.Ecc.MEDIUM)
+except DataTooLongError:
+    parser.error('URL is too long for a QR code; use a shorter destination')
+save_png(qr, output, bytes.fromhex(foreground[1:]), bytes.fromhex(background[1:]))
 print(f"Saved QR code: {output}")

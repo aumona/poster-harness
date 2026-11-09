@@ -10,6 +10,64 @@ RAFALES takes its name from Prof. Guy Wolf’s lab, where I first designed this 
 
 ## Agent-assisted workflow
 
+### Create a separate poster project
+
+Keep this checkout as the generic starter. Create an independent project with:
+
+```sh
+python3 scripts/new-poster.py ../my-conference-poster
+```
+
+Relative destinations are resolved from your current working directory. The
+command refuses existing destinations and destinations inside the template.
+It copies the TeX sources, assets, brief, project instructions, and build scripts;
+it leaves out Git history, generated PDFs/logs, and the starter skill. No Git
+repository is initialized. Run it from the generic template, rather than a
+previous research poster, so previous content and assets are not carried over.
+
+Open the new folder in Codex and say:
+
+> Read AGENTS.md and brief.md. Create a poster from the paper at [path]. Ask me
+> for missing information and record my answers in brief.md. Keep the default
+> format, build with make check, and visually inspect the PDF.
+
+You can fill in `brief.md` yourself or answer in chat. It records the source
+material, conference requirements, audience, takeaway, author/contact details,
+QR destinations, and restrictions. Build in the new folder; its output is
+`output/pdf/main.pdf`.
+
+### Optional Codex starter skill
+
+The repository includes `skills/new-poster/SKILL.md`. It locates the reusable
+template, creates a separate project, gathers missing brief information, and
+hands over to that project's `AGENTS.md`. Its default template location is
+`~/Projects/rafales-poster-template`; edit that reference if you store it elsewhere.
+The skill checks for `scripts/new-poster.py` to identify a usable template.
+If that file and the template folder are missing, the skill clones
+`https://github.com/aumona/rafales-poster-template.git` there (or into your
+specified template location), then checks for the script again. If the folder
+exists but the script is missing, it asks how to proceed rather than overwriting it.
+New posters default to a named sibling folder, never inside the template.
+
+To make it available across Codex projects, link it once (the target must not
+already exist):
+
+```sh
+mkdir -p ~/.agents/skills
+ln -s ~/Projects/rafales-poster-template/skills/new-poster ~/.agents/skills/new-poster
+```
+
+Start a fresh Codex session if needed to discover it, then ask:
+
+> Use $new-poster to create an ICLR poster in ~/Projects/iclr-poster from the
+> paper at [path]. Ask me for the remaining brief information.
+
+The skill is optional; the creation command and project instructions also work
+on their own. The template folder supplies reusable files, while the new poster
+folder and the source material you identify supply the context for the work.
+
+### Build a poster with an agent
+
 Use Codex or another coding agent to help turn a paper into a poster. The included `AGENTS.md` describes the template’s editing and layout conventions. You can also follow these steps manually; see [Edit](#edit).
 
 1. Download the Overleaf source ZIP or sync your existing Git integration.
@@ -121,11 +179,11 @@ The default footer contains two 5.8-inch QR images, inward-facing Paper/Code lab
 
 ### Generate QR codes locally
 
-Use `scripts/make-qr.py` as the default generator. `requirements.txt` declares `qrcode` with its Pillow image dependency. The `check.py` and `clean.py` scripts use only the Python standard library. Install QR dependencies once (not required for compiling existing QR assets):
-
-```sh
-python3 -m pip install -r requirements.txt
-```
+Use `scripts/make-qr.py` as the default generator. No package installation is
+needed: it uses the bundled [Project Nayuki QR encoder](https://www.nayuki.io/page/qr-code-generator-library)
+and writes PNG images with the Python standard library. The encoder is included
+in `scripts/vendor/` with its MIT license and source attribution. Keep that
+folder with the scripts. Build/check/clean also use only the standard library.
 
 For each QR code, only the **destination URL** is required. Optional inputs are:
 
@@ -162,7 +220,7 @@ Use `--mode dark` for a purple background. The script applies these colors autom
 | Light | Purple `#662E7D` | White `#FFFFFF` |
 | Dark / purple | White `#FFFFFF` | Purple `#662E7D` |
 
-Set `\PaperQRFile` and `\CodeQRFile` in `content.tex` to the generated files. The included examples encode **https://example.org** and **https://example.org/code**; replace both for a real poster. Generation runs locally without network access after dependency installation. The script preserves a four-module quiet zone. Scan-test the final codes, including the white-on-purple version, before printing. Regenerate or select matching images when changing the background; existing assets do not switch colors automatically.
+Set `\PaperQRFile` and `\CodeQRFile` in `content.tex` to the generated files. The included examples encode **https://example.org** and **https://example.org/code**; replace both for a real poster. Generation runs locally without network access or package installation. The script preserves a four-module quiet zone. Scan-test the final codes, including the white-on-purple version, before printing. Regenerate or select matching images when changing the background; existing assets do not switch colors automatically.
 
 ### Generate QR codes online (optional)
 
