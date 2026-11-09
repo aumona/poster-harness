@@ -1,10 +1,12 @@
-# RAFALES Poster Template
+# 🛩️ RAFALES Poster Template
 
 A standalone, editable BetterPoster-inspired LaTeX template. Default print size: **48 x 36 inches, landscape**. Default pane widths: **20% left / 60% center / 20% right**, or 9.6 / 28.8 / 9.6 inches. The selected purple (`#662E7D`) is Mila's official logo purple, taken from the [official Mila SVG](https://mila.quebec/sites/default/themes/mila_v1/logo.svg) used by `assets/logos/mila-color.pdf`. Pale green (`#B9DBC1`) is taken from Mila's [official website stylesheet](https://mila.quebec/sites/default/files/css/css_J4CCfVN5SWjedZp9IH4f0a8J8wc57536YUd18MesaZQ.css), where it is used for `theme-green` backgrounds and `ckeditor-style-theme-green` bullets. This is a verified website color, rather than a claim about a published brand manual. Latin Modern Sans completes the template design. Default print typography: side body text 41.76 pt, center body text approximately 56.73 pt, side headings 51.04 pt, paper title 48.72 pt, main takeaway 208.13 pt, and subtitle 96 pt. Font commands are centralized in `poster-style.sty`. The example is deliberately generic and contains no research results.
 
 This is a reusable default for conference posters. Keep the format consistent across projects, adapting dimensions or required elements when a conference specifies them.
 
 RAFALES takes its name from Prof. Guy Wolf’s lab, where I first designed this template to help my teammates.
+
+[View the poster template PDF](output/pdf/main.pdf)
 
 ## Agent-assisted workflow
 
@@ -40,7 +42,7 @@ Install TeX Live or MacTeX with `pdflatex` and the geometry, tikz/pgf, graphicx,
 make check
 ```
 
-Requires Make and Python 3. The command compiles twice, rejects oversized panels, and checks for one page, overfull boxes, and LaTeX/package warnings. Output: `output/pdf/main.pdf`. Open and visually inspect it before printing at **100% actual size**. `make clean` removes auxiliary files and retains the PDF. The checked-in PDF is the example preview; building replaces it with your current content.
+Requires Make and Python 3. The command compiles twice, rejects oversized panels, and checks for one page, overfull boxes, and LaTeX/package warnings. Output: `output/pdf/main.pdf`. Open and visually inspect it before printing at **100% actual size**. `make clean` removes auxiliary files and retains the PDF. Building replaces the checked-in example PDF with your current content.
 
 ## Edit
 
