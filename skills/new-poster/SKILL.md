@@ -6,7 +6,7 @@ description: "Start a research poster with the RAFALES LaTeX template: gather th
 # New poster
 
 Every new poster starts from `~/Projects/rafales-poster-template`.
-Default poster collection: `~/Projects/Posters`. The template and each poster
+Default poster collection: `~/Projects/presentations`. The template and each poster
 are separate folders; the current working directory is not the destination.
 This skill gets the project started with a brief, sources, and an outline.
 The poster folder's own `AGENTS.md` drives content, layout, and verification.
@@ -28,12 +28,12 @@ The poster folder's own `AGENTS.md` drives content, layout, and verification.
    installation directory.
 
 2. **Stamp the folder.** Use the user's destination, otherwise
-   `~/Projects/Posters/YYYY-MM-DD-venue-slug`, with the presentation date.
+   `~/Projects/presentations/YYYY-MM-DD-venue-slug`, with the presentation date.
    Infer the date and slug from the request; ask if they are missing. Do not
    substitute today's date for an unknown presentation date.
 
    ```sh
-   python3 ~/Projects/rafales-poster-template/scripts/new-poster.py ~/Projects/Posters/YYYY-MM-DD-venue-slug
+   python3 ~/Projects/rafales-poster-template/scripts/new-poster.py ~/Projects/presentations/YYYY-MM-DD-venue-slug
    ```
 
    Substitute the resolved template and destination paths. Never create inside
