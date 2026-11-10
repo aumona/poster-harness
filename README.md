@@ -49,7 +49,7 @@ If that file and the template folder are missing, the skill clones
 `https://github.com/aumona/poster-harness.git` there (or into your
 specified template location), then checks for the script again. If the folder
 exists but the script is missing, it asks how to proceed rather than overwriting it.
-Unless you specify a destination, new posters go in `~/Projects/presentations`,
+Unless you specify a destination, new posters go in `~/Projects/presentations/posters/`,
 named `YYYY-MM-DD-venue-slug` using the poster presentation date. If the parent
 folder, date, or venue/topic is unclear, the skill asks before creating it.
 The template's location does not determine the poster's destination.
